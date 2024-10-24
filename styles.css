@@ -1,0 +1,63 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    width: 80%;
+    max-width: 1000px;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.controls, .medium-control {
+    margin-bottom: 20px;
+}
+
+.target-image {
+    position: absolute;
+    right: 32%;
+    top: 60%;
+    width: 100px;
+    height: 100px;
+}
+
+
+label {
+    margin-right: 10px;
+}
+
+input[type="range"] {
+    width: 200px;
+    margin-right: 10px;
+}
+
+#canvas {
+    border: 1px solid #333;
+    margin-top: 20px;
+    width: 100%;
+    height: 300px;
+}
+
+#output {
+    font-weight: bold;
+    margin-top: 10px;
+}

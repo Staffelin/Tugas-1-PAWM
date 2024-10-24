@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Lab: Light Refraction</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Light Refraction Simulation with Three Media</h1>
+        
+        <div class="controls">
+            <label for="angle-input">Incoming Angle (°):</label>
+            <input type="range" id="angle-input" min="0" max="90" value="30" oninput="updateLab()">
+            <span id="angle-display">30</span>°
+        </div>
+
+        <div class="medium-control">
+            <label for="material1">Material 1 (n):</label>
+            <input type="range" id="material1" min="1" max="1.603" step="0.001" value="1" oninput="updateLab()">
+            <span id="material1-display">1.000</span>
+
+            <label for="material2">Material 2 (n):</label>
+            <input type="range" id="material2" min="1" max="1.603" step="0.001" value="1" oninput="updateLab()">
+            <span id="material2-display">1.000</span>
+
+            <label for="material3">Material 3 (n):</label>
+            <input type="range" id="material3" min="1" max="1.603" step="0.001" value="1" oninput="updateLab()">
+            <span id="material3-display">1.000</span>
+        </div>
+        <canvas id="canvas"></canvas>
+        <img id="target" src="target-image.png" alt="Target" class="target-image">
+        <p id="output"></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
