@@ -12,6 +12,7 @@ canvas.width = canvas.clientWidth;
 canvas.height = 300;
 
 // Main function to update the light refraction simulation and check for target hit
+// Main function to update the light refraction simulation and check for target hit
 function updateLab() {
     // Get user inputs for the incoming angle and refractive indices of the three materials
     const angle = parseFloat(document.getElementById('angle-input').value);
@@ -72,6 +73,16 @@ function updateLab() {
     ctx.stroke();
     ctx.setLineDash([]);  // Reset line dash to solid lines
 
+    // Draw boundary lines between the media
+    ctx.beginPath();
+    ctx.moveTo(xBoundary1, 0);
+    ctx.lineTo(xBoundary1, canvas.height);
+    ctx.moveTo(xBoundary2, 0);
+    ctx.lineTo(xBoundary2, canvas.height);
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
     // Draw the incoming ray (from the left) with the specified angle of incidence
     const lengthRay = mediumWidth - 50;  // Set the length of the incoming ray
     const x1 = xBoundary1 - lengthRay * Math.cos(angleRad);  // Calculate x endpoint of the ray
@@ -105,6 +116,13 @@ function updateLab() {
     ctx.strokeStyle = 'green';  // Set the color of the ray in medium 3
     ctx.lineWidth = 2;
     ctx.stroke();
+
+    // Display the angles on the canvas
+    ctx.font = '14px Arial';
+    ctx.fillStyle = 'black';
+    ctx.fillText(`Angle 1: ${angle.toFixed(2)}°`, 10, yMid - 10);
+    ctx.fillText(`Refracted Angle 1: ${refractedAngle1.toFixed(2)}°`, xBoundary1 + 10, yMid + 20);
+    ctx.fillText(`Refracted Angle 2: ${refractedAngle2.toFixed(2)}°`, xBoundary2 + 10, yBoundary2 + 20);
 
     // Display the final refracted angle value on the screen
     document.getElementById('output').textContent = `Refracted Angle 2: ${refractedAngle2.toFixed(2)}°`;
