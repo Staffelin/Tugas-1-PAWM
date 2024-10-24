@@ -159,14 +159,6 @@ function updateLab() {
 
     // Display the final refracted angle value on the screen
     document.getElementById('output').textContent = `Refracted Angle 2: ${refractedAngle2.toFixed(2)}°`;
-
-    // Check if the final ray of light hits the target located in the bottom-right corner
-    const distanceToTarget = Math.sqrt(Math.pow(x3 - targetX, 2) + Math.pow(y3 - targetY, 2));  // Calculate distance between light ray and target
-    if (distanceToTarget <= targetRadius) {
-        document.getElementById('output').textContent += ' - The light hits the target!';  // Success message if the light hits the target
-    } else {
-        document.getElementById('output').textContent += ' - The light misses the target.';  // Failure message if the light misses
-    }
 }
 
 // Initialize the simulation when the page loads
