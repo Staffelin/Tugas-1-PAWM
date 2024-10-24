@@ -2,16 +2,29 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
-// Define the coordinates of the target at the bottom-right corner
-const targetX = canvas.width;  // X-coordinate of the target (aligned with the bottom-right corner)
-const targetY = canvas.height;  // Y-coordinate of the target (bottom of the canvas)
+// Define the coordinates and radius of the target
+let targetX = canvas.width;
+let targetY = canvas.height;
 const targetRadius = 150;  // Radius of the target in pixels
 
 // Set canvas width to match its actual display width and define a fixed height
 canvas.width = canvas.clientWidth;
 canvas.height = 300;
 
-// Main function to update the light refraction simulation and check for target hit
+// Function to update target position based on canvas size
+function updateTargetPosition() {
+    targetX = canvas.width - targetRadius;
+    targetY = canvas.height - targetRadius;
+}
+
+// Add event listener to update the canvas size and target position when the window is resized
+window.addEventListener('resize', () => {
+    canvas.width = canvas.clientWidth;
+    canvas.height = 300;  // Keep height fixed, or adjust as needed
+    updateTargetPosition();
+    updateLab();  // Redraw the simulation when resized
+});
+
 // Main function to update the light refraction simulation and check for target hit
 function updateLab() {
     // Get user inputs for the incoming angle and refractive indices of the three materials
@@ -19,17 +32,26 @@ function updateLab() {
     const n1 = parseFloat(document.getElementById('material1').value);
     const n2 = parseFloat(document.getElementById('material2').value);
     const n3 = parseFloat(document.getElementById('material3').value);
-    
-    // Display the updated values on the screen
+
+    // Display the updated angle value
     document.getElementById('angle-display').textContent = angle;
-    document.getElementById('material1-display').textContent = n1.toFixed(3);
-    document.getElementById('material2-display').textContent = n2.toFixed(3);
-    document.getElementById('material3-display').textContent = n3.toFixed(3);
 
     // Convert the incoming angle to radians for trigonometric calculations
     const angleRad = angle * (Math.PI / 180);
+
+    // Determine the light direction based on the angle
+    let direction = 1; // Left to right by default
+    let isFromRight = false;
+    if (angle > 90) {
+        direction = -1; // Right to left
+        isFromRight = true; // Light is coming from the right side
+    }
+
+    // Adjust angle for calculations to work with angles > 90° correctly
+    const adjustedAngle = direction === 1 ? angleRad : Math.PI - angleRad;
+
     // Calculate the sine of the refracted angle at the first boundary using Snell's law
-    const sinRefractedAngle1 = (n1 / n2) * Math.sin(angleRad);
+    const sinRefractedAngle1 = (n1 / n2) * Math.sin(adjustedAngle);
 
     // Check for total internal reflection at the first boundary
     if (Math.abs(sinRefractedAngle1) > 1) {
@@ -42,6 +64,7 @@ function updateLab() {
 
     // Convert the first refracted angle to radians for further calculations
     const refractedAngle1Rad = refractedAngle1 * (Math.PI / 180);
+
     // Calculate the sine of the refracted angle at the second boundary using Snell's law
     const sinRefractedAngle2 = (n2 / n3) * Math.sin(refractedAngle1Rad);
 
@@ -83,14 +106,22 @@ function updateLab() {
     ctx.lineWidth = 2;
     ctx.stroke();
 
-    // Draw the incoming ray (from the left) with the specified angle of incidence
+    // Handle drawing of the incoming ray based on the direction (left to right or right to left)
     const lengthRay = mediumWidth - 50;  // Set the length of the incoming ray
-    const x1 = xBoundary1 - lengthRay * Math.cos(angleRad);  // Calculate x endpoint of the ray
-    const y1 = yMid - lengthRay * Math.sin(angleRad);  // Calculate y endpoint of the ray
-
-    ctx.beginPath();
-    ctx.moveTo(xBoundary1, yMid);  // Start the incoming ray at the boundary
-    ctx.lineTo(x1, y1);  // Draw the ray to the calculated endpoint
+    let x1, y1;
+    if (!isFromRight) { // Left to right
+        x1 = xBoundary1 - lengthRay * Math.cos(angleRad);  // Calculate x endpoint of the ray
+        y1 = yMid - lengthRay * Math.sin(angleRad);  // Calculate y endpoint of the ray
+        ctx.beginPath();
+        ctx.moveTo(xBoundary1, yMid);  // Start the incoming ray at the boundary
+        ctx.lineTo(x1, y1);  // Draw the ray to the calculated endpoint
+    } else { // Right to left
+        x1 = xBoundary2 + lengthRay * Math.cos(Math.PI - angleRad);  // Calculate x endpoint of the ray
+        y1 = yMid + lengthRay * Math.sin(Math.PI - angleRad);  // Calculate y endpoint of the ray
+        ctx.beginPath();
+        ctx.moveTo(xBoundary2, yMid);  // Start the incoming ray at the boundary
+        ctx.lineTo(x1, y1);  // Draw the ray to the calculated endpoint
+    }
     ctx.strokeStyle = 'red';  // Set the color of the incoming ray
     ctx.lineWidth = 2;  // Set the line width of the ray
     ctx.stroke();
