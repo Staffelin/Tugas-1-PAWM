@@ -3,42 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Virtual Lab: Light Refraction</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Homepage - Virtual Lab</title>
+    <link rel="stylesheet" href="homepage.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Light Refraction Simulation with Three Media</h1>
-        
-        <div class="controls">
-            <label for="angle-input">Incoming Angle (°):</label>
-            <input type="range" id="angle-input" min="0" max="90" value="30" oninput="updateLab()">
-            <span id="angle-display">30</span>°
-        </div>
+    <div class="homepage-container">
+        <!-- Card with Image, Text, and Buttons -->
+        <div class="card">
+            <img src="LightRefraction.jpg" alt="Card Image" class="card-image">
+            <div class="card-content">
+                <h3>Welcome To PhysikWorks!</h3>
+            </div>
+            <div class="card-footer">
+                <!-- Travel button redirects to index.html -->
+                <button class="text-button" onclick="window.location.href='index.html'">Check it</button>
 
-        <div class="medium-control">
-            <label for="material1">Material 1 (n):</label>
-            <input type="number" id="material1" min="1" max="1.603" step="0.001" value="1.000" oninput="updateLab()">
-            <span id="material1-display"></span>
-        
-            <label for="material2">Material 2 (n):</label>
-            <input type="number" id="material2" min="1" max="1.603" step="0.001" value="1.000" oninput="updateLab()">
-            <span id="material2-display"></span>
-        
-            <label for="material3">Material 3 (n):</label>
-            <input type="number" id="material3" min="1" max="1.603" step="0.001" value="1.000" oninput="updateLab()">
-            <span id="material3-display"></span>
-        </div>
-
-        <canvas id="canvas"></canvas>
-        <p id="output"></p>
-
-        <!-- Button to go to quiz mode -->
-        <div class="button-container">
-            <button onclick="location.href='quiz.html'">Go to Quiz Mode</button>
+            </div>
         </div>
     </div>
-
-    <script src="script.js"></script> <!-- Link to the simulation-specific JS file -->
 </body>
 </html>
