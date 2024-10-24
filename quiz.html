@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Mode: Light Refraction</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Light Refraction Quiz Mode</h1>
+        
+        <div class="quiz-container">
+            <p>Incoming Angle: <span id="random-angle-display">--</span>°</p>
+            
+            <label for="answer-n1">n1 (Material 1): </label>
+            <input type="number" id="answer-n1" step="0.001" placeholder="Enter n1 value">
+
+            <label for="answer-n2">n2 (Material 2): </label>
+            <input type="number" id="answer-n2" step="0.001" placeholder="Enter n2 value">
+
+            <label for="answer-n3">n3 (Material 3): </label>
+            <input type="number" id="answer-n3" step="0.001" placeholder="Enter n3 value">
+
+            <button onclick="submitQuiz()">Submit Answers</button>
+
+            <p id="quiz-feedback"></p>
+        </div>
+
+        <!-- Button to go back to the simulation -->
+        <div class="button-container">
+            <button onclick="location.href='index.html'">Go to Simulation</button>
+        </div>
+    </div>
+
+    <script src="quiz.js"></script> <!-- Link to the quiz-specific JS file -->
+</body>
+</html>

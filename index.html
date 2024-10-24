@@ -29,13 +29,16 @@
             <input type="number" id="material3" min="1" max="1.603" step="0.001" value="1.000" oninput="updateLab()">
             <span id="material3-display"></span>
         </div>
-        
-        <!-- Updated Canvas to be responsive -->
-        <canvas id="canvas" aria-label="Light refraction simulation canvas"></canvas>
-        <img id="target" src="target-image.png" alt="Target image for light simulation" class="target-image">
+
+        <canvas id="canvas"></canvas>
         <p id="output"></p>
+
+        <!-- Button to go to quiz mode -->
+        <div class="button-container">
+            <button onclick="location.href='quiz.html'">Go to Quiz Mode</button>
+        </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js"></script> <!-- Link to the simulation-specific JS file -->
 </body>
 </html>

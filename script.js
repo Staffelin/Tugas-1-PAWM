@@ -25,6 +25,7 @@ window.addEventListener('resize', () => {
     updateLab();  // Redraw the simulation when resized
 });
 
+
 // Main function to update the light refraction simulation and check for target hit
 function updateLab() {
     // Get user inputs for the incoming angle and refractive indices of the three materials
@@ -153,7 +154,8 @@ function updateLab() {
     ctx.fillStyle = 'black';
     ctx.fillText(`Angle 1: ${angle.toFixed(2)}°`, 10, yMid - 10);
     ctx.fillText(`Refracted Angle 1: ${refractedAngle1.toFixed(2)}°`, xBoundary1 + 10, yMid + 20);
-    ctx.fillText(`Refracted Angle 2: ${refractedAngle2.toFixed(2)}°`, xBoundary2 + 10, yBoundary2 + 20);
+    ctx.fillText(`Refracted Angle 2: ${refractedAngle2.toFixed(2)}°`, xBoundary2 + 100, yMid + 20); // Adjusted position
+
 
     // Display the final refracted angle value on the screen
     document.getElementById('output').textContent = `Refracted Angle 2: ${refractedAngle2.toFixed(2)}°`;

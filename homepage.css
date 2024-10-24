@@ -39,10 +39,12 @@ body {
 
 /* Image styling */
 .card-image {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
+    width: 100%; /* Make the image take up the full width of the card */
+    height: 150px; /* Set a fixed height for the image */
+    object-fit: cover; /* Ensure the image covers the box, maintaining aspect ratio */
+    border-bottom: 1px solid #ddd; /* Optional: adds a nice separation between the image and the text */
 }
+
 
 /* Card content styling */
 .card-content {
