@@ -108,6 +108,32 @@ input[type="range"] {
     margin-top: 10px;
 }
 
+/* Circular Frame for the Logo */
+.logo-frame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logo-image {
+    width: 120px; /* Adjust as needed */
+    height: 120px;
+    border-radius: 50%; /* Makes it circular */
+    border: 5px solid #f0f0f0; /* Frame color and thickness */
+    background-color: #ffffff; /* Frame background color */
+    padding: 10px; /* Adds space around the logo within the frame */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow */
+}
+
+/* Centering Login Card Below the Logo */
+.homepage-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px; /* Adds space at the top */
+}
+
 /* Add responsiveness for smaller screens */
 @media (max-width: 600px) {
     .container {
